@@ -11,10 +11,17 @@ type Variant =
   | 'success'
   | 'warning';
 
-type Props = {
-  message?: string;
-  messageId?: string;
-  variant?: Variant;
+type Props =  (
+  | {
+    message: string;
+    messageId?: never;
+  }
+  | {
+    message?: never;
+    messageId: string;
+  }
+) & {
+  variant?: Variant
 };
 
 export const DualAlert: FC<Props> = ({
